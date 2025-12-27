@@ -1,0 +1,228 @@
+@startuml DiagramHearthOfParma
+skinparam classAttributeIconSize 0
+
+
+abstract class WorldObject {
+  - id: java.util.UUID
+  - name: String
+  + getId(): java.util.UUID
+  + getName(): String
+  + toString(): String
+  + equals(o: Object): boolean
+  + hashCode(): int
+}
+
+abstract class Character extends WorldObject {
+  - emotion: Emotion
+  - stamina: int
+  + changeEmotion(e: Emotion)
+  + spendStamina(cost: int) throws RitualException
+  {abstract} + act(ctx: RitualContext) throws RitualException
+}
+
+enum Emotion {
+  CALM
+  FEAR
+  FRENZY
+  EXHAUSTED
+}
+
+
+interface Diviner {
+  + predict(ctx: RitualContext): Prophecy throws RitualException
+}
+
+interface Executioner {
+  + execute(p: Prisoner, ctx: RitualContext) throws RitualException
+}
+
+
+class Ukhvat extends Character {
+  - courage: int
+  - sneezeCount: int
+  + crossSelf()
+  + sneeze()
+  + approach(target: WorldObject) throws PanicException
+  + act(ctx: RitualContext) throws RitualException
+}
+
+class Shaman extends Character implements Diviner {
+  + dance()
+  + castSalt(fire: Fire, salt: Ingredient) throws RitualException
+  + predict(ctx: RitualContext): Prophecy throws RitualException
+  + act(ctx: RitualContext) throws RitualException
+}
+
+class Warrior extends Character {
+  - weapon: Weapon
+  - drunkLevel: int
+  + chant()
+  + scream()
+  + drink(d: Drink)
+  + carveIdol(idol: Idol, chips: int) throws RitualException
+  + act(ctx: RitualContext) throws RitualException
+}
+
+class VoglePrince extends Character {
+  + signalStartSacrifice(site: RitualSite)
+  + act(ctx: RitualContext) throws RitualException
+}
+
+class PrinceTeen extends Character implements Executioner {
+  - knife: Weapon
+  + execute(p: Prisoner, ctx: RitualContext) throws RitualException
+  + act(ctx: RitualContext) throws RitualException
+}
+
+class Prisoner extends Character {
+  - bound: boolean
+  - gagged: boolean
+  - health: int
+  + awaken()
+  + takeDamage(dmg: int)
+  + act(ctx: RitualContext) throws RitualException
+}
+
+
+abstract class Item extends WorldObject {
+  - durability: int
+}
+
+class SacredTree extends WorldObject {
+  - sunHit: boolean
+  + hitBySun(site: RitualSite)
+}
+
+class Fire extends WorldObject {
+  - intensity: int
+  - smoke: int
+  + ignite()
+  + addSalt(salt: Ingredient)
+  + increaseSmoke(delta: int)
+}
+
+class Cauldron extends WorldObject {
+  - temperature: int
+  - contents: java.util.List~Ingredient~
+  + boil()
+  + add(ing: Ingredient)
+  + scoop(): Drink throws RitualException
+}
+
+class Mug extends Item {
+  - broken: boolean
+  + fill(d: Drink) throws RitualException
+  + breakOn(target: WorldObject)
+}
+
+enum WeaponType {
+  SPEAR
+  SWORD
+  KNIFE
+  ARROW
+}
+
+class Weapon extends Item {
+  - type: WeaponType
+}
+
+class Idol extends Item {
+  - integrity: int
+  + carve(chips: int) throws RitualException
+}
+
+class GoldenBaba extends Idol {
+  - hidden: boolean
+  + reveal() throws RitualException
+  + hide()
+}
+
+class Veil extends Item {
+  - opened: boolean
+  + open()
+  + close()
+}
+
+enum IngredientType {
+  SALT
+  ROOTS
+  LEAVES
+  FLY_AGARIC
+  BARK
+  BLOOD
+}
+
+class Ingredient <<record>> {
+  + type: IngredientType
+  + amount: int
+}
+
+class Drink <<record>> {
+  + name: String
+  + potency: int
+}
+
+class Prophecy <<record>> {
+  + text: String
+  + certainty: int
+}
+
+
+enum RitualPhase {
+  PREP
+  CHANT
+  OFFERING
+  DIVINATION
+  REVEAL
+  SACRIFICE
+  FINISH
+}
+
+class RitualSite extends WorldObject {
+  - phase: RitualPhase
+  - smokeLevel: int
+  - participants: java.util.List~Character~
+  - prisoners: java.util.List~Prisoner~
+  - fires: java.util.List~Fire~
+  - cauldrons: java.util.List~Cauldron~
+  - sacredTree: SacredTree
+  - idol: Idol
+  - goldenBaba: GoldenBaba
+  - veil: Veil
+  + advancePhase()
+  + updateSmoke(delta: int)
+}
+
+class RitualContext {
+  - site: RitualSite
+  - rng: java.util.Random
+  + site(): RitualSite
+  + chance(p: double): boolean
+  + nextInt(bound: int): int
+}
+
+
+class RitualException extends Exception {
+  + getMessage(): String
+}
+
+class PanicException extends RuntimeException {
+  + getMessage(): String
+}
+
+RitualSite o-- "0..*" Character
+RitualSite o-- "0..*" Prisoner
+RitualSite o-- "0..*" Fire
+RitualSite o-- "0..*" Cauldron
+RitualSite o-- SacredTree
+RitualSite o-- Idol
+RitualSite o-- GoldenBaba
+RitualSite o-- Veil
+
+Warrior ..> Weapon
+PrinceTeen ..> Weapon
+Cauldron ..> Ingredient
+Cauldron ..> Drink
+Diviner ..> Prophecy
+
+@enduml
