@@ -210,19 +210,22 @@ class PanicException extends RuntimeException {
   + getMessage(): String
 }
 
-RitualSite o-- "0..*" Character
-RitualSite o-- "0..*" Prisoner
-RitualSite o-- "0..*" Fire
-RitualSite o-- "0..*" Cauldron
-RitualSite o-- SacredTree
-RitualSite o-- Idol
-RitualSite o-- GoldenBaba
-RitualSite o-- Veil
+RitualSite -- "0..*" Character : participants
+RitualSite -- "0..*" Prisoner : prisoners
+RitualSite *-- "0..*" Fire
+RitualSite *-- "0..*" Cauldron
+RitualSite *-- SacredTree
+RitualSite *-- Idol
+RitualSite *-- GoldenBaba
+RitualSite *-- Veil
 
-Warrior ..> Weapon
-PrinceTeen ..> Weapon
-Cauldron ..> Ingredient
-Cauldron ..> Drink
-Diviner ..> Prophecy
+Warrior --> Weapon : weapon
+PrinceTeen --> Weapon : knife
+
+Cauldron --> "0..*" Ingredient : contents
+Cauldron ..> Drink : scoop()
+
+Diviner ..> Prophecy : predict()
+Executioner ..> Prisoner : execute()
 
 @enduml
