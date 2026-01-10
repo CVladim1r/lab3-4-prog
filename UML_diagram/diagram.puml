@@ -195,7 +195,7 @@ class RitualSite extends WorldObject {
 
 class RitualContext {
   - site: RitualSite
-  - rng: java.util.Random
+  - random: java.util.Random
   + site(): RitualSite
   + chance(p: double): boolean
   + nextInt(bound: int): int
