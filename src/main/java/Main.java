@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== РИТУАЛ У СВЯЩЕННОЙ ЕЛИ ===\n");
+        System.out.println("----- РИТУАЛ У СВЯЩЕННОЙ ЕЛИ -----\n");
 
         RitualSite site = new RitualSite("Поляна у священной ели");
         Ukhvat ukhvat = new Ukhvat("Ухват");
@@ -89,7 +89,7 @@ public class Main {
         System.out.println("Дым пока умеренный, но растёт.\n");
         
         // ЕЙСТВИЕ ПЕРВОЕ -- СТАРТ РИТУАЛА
-        System.out.println("=== ДЕЙСТВИЕ ПЕРВОЕ. СТАРТ РИТУАЛА ===");
+        System.out.println("----- ДЕЙСТВИЕ ПЕРВОЕ. СТАРТ РИТУАЛА -----");
         site.advancePhase(); // PREP -> CHANT
         
         ukhvat.crossSelf();
@@ -117,7 +117,7 @@ public class Main {
         System.out.println();
         
         // ЕЙСТВИЕ ВТОРОЕ. РИТУАЛ ПРОДОЛЖАЕТСЯ
-        System.out.println("=== ДЕЙСТВИЕ ВТОРОЕ. РИТУАЛ ПРОДОЛЖАЕТСЯ ===");
+        System.out.println("----- ДЕЙСТВИЕ ВТОРОЕ. РИТУАЛ ПРОДОЛЖАЕТСЯ -----");
         site.advancePhase(); // CHANT -> OFFERING
         
         for (Fire fire : site.getFires()) {
@@ -142,7 +142,7 @@ public class Main {
         System.out.println();
         
         // ДЕЙСТВИЕ ТРЕТЬЕ -- КОТЁЛ
-        System.out.println("=== ДЕЙСТВИЕ ТРЕТЬЕ. КОТЁЛ ===");
+        System.out.println("----- ДЕЙСТВИЕ ТРЕТЬЕ. КОТЁЛ -----");
         
         cauldron.add(new Ingredient(IngredientType.ROOTS, 5));
         cauldron.add(new Ingredient(IngredientType.LEAVES, 8));
@@ -177,7 +177,7 @@ public class Main {
         System.out.println();
         
         // ГАДАНИЕ
-        System.out.println("=== ДЕЙСТВИЕ ЧЕТВЁРТОЕ. ГАДАНИЕ ===");
+        System.out.println("----- ДЕЙСТВИЕ ЧЕТВЁРТОЕ. ГАДАНИЕ -----");
         site.advancePhase(); // OFFERING -> DIVINATION
         
         Prophecy prophecy = null;
@@ -190,7 +190,7 @@ public class Main {
         System.out.println();
         
         // ЗАКАТ, ЛУЧ В ЕЛЬ, ОТКРЫТИЕ ПОЛОГА
-        System.out.println("=== ДЕЙСТВИЕ ПЯТОЕ. ЗАКАТ, ЛУЧ В ЕЛЬ, ОТКРЫТИЕ ПОЛОГА ===");
+        System.out.println("----- ДЕЙСТВИЕ ПЯТОЕ. ЗАКАТ, ЛУЧ В ЕЛЬ, ОТКРЫТИЕ ПОЛОГА -----");
         site.advancePhase(); // DIVINATION -> REVEAL
         
         tree.hitBySun(site);
@@ -218,7 +218,7 @@ public class Main {
         System.out.println();
         
         // ДЕЙСТВИЕ ШЕСТОЕ. СКРЫТИЕ ЗОЛОТОЙ БАБЫ И ИДОЛ В КОСТРЕ
-        System.out.println("=== ДЕЙСТВИЕ ШЕСТОЕ. СКРЫТИЕ ЗОЛОТОЙ БАБЫ И ИДОЛ В КОСТРЕ ===");
+        System.out.println("----- ДЕЙСТВИЕ ШЕСТОЕ. СКРЫТИЕ ЗОЛОТОЙ БАБЫ И ИДОЛ В КОСТРЕ -----");
         
         goldenBaba.hide();
         veil.close();
@@ -240,7 +240,7 @@ public class Main {
         System.out.println();
         
         // ПЛЕННИКИ И СИГНАЛ КНЯЗЯ
-        System.out.println("=== ДЕЙСТВИЕ СЕДЬМОЕ. ПЛЕННИКИ И СИГНАЛ КНЯЗЯ ===");
+        System.out.println("----- ДЕЙСТВИЕ СЕДЬМОЕ. ПЛЕННИКИ И СИГНАЛ КНЯЗЯ -----");
         site.advancePhase(); // REVEAL -> SACRIFICE
         
         System.out.println("Толпа резко перемещается к ямам/месту, где стоят пленники, привязанные и обессиленные.");
@@ -252,8 +252,8 @@ public class Main {
         
         System.out.println();
         
-        // ===== ДЕЙСТВИЕ ВОСЬМОЕ. ДЕЙСТВИЕ КНЯЖИЧЕЙ (КУЛЬМИНАЦИЯ) =====
-        System.out.println("=== ДЕЙСТВИЕ ВОСЬМОЕ. ДЕЙСТВИЕ КНЯЖИЧЕЙ (КУЛЬМИНАЦИЯ) ===");
+        // ДЕЙСТВИЕ КНЯЖИЧЕЙ
+        System.out.println("----- ДЕЙСТВИЕ ВОСЬМОЕ. ДЕЙСТВИЕ КНЯЖИЧЕЙ (КУЛЬМИНАЦИЯ) -----");
         
         boolean firstKill = false;
         
@@ -284,7 +284,7 @@ public class Main {
         System.out.println();
         
         // ФИНАЛ
-        System.out.println("=== ДЕЙСТВИЕ ДЕВЯТОЕ. ФИНАЛ ===");
+        System.out.println("----- ДЕЙСТВИЕ ДЕВЯТОЕ. ФИНАЛ -----");
         site.advancePhase(); // SACRIFICE -> FINISH
         
         System.out.println("Дым и чад окончательно накрывают поляну.");
@@ -297,6 +297,6 @@ public class Main {
             }
         }
         
-        System.out.println("\n=== РИТУАЛ ЗАВЕРШЁН ===");
+        System.out.println("\n----- РИТУАЛ ЗАВЕРШЁН -----");
     }
 }
