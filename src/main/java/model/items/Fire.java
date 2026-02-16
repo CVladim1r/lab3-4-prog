@@ -39,5 +39,27 @@ public class Fire extends WorldObject {
     public int getIntensity() {
         return intensity;
     }
+
+    @Override
+    public String toString() {
+        return getName() + " [интенсивность=" + intensity + ", дым=" + smoke + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Fire)) return false;
+        if (!super.equals(o)) return false;
+        Fire fire = (Fire) o;
+        return intensity == fire.intensity && smoke == fire.smoke;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + intensity;
+        result = 31 * result + smoke;
+        return result;
+    }
 }
 

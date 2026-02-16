@@ -76,5 +76,26 @@ public class Warrior extends Character {
     public Weapon getWeapon() {
         return weapon;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [оружие=" + weapon.getName() + ", угар=" + drunkLevel + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        if (!(o instanceof Warrior)) return false;
+        Warrior warrior = (Warrior) o;
+        return drunkLevel == warrior.drunkLevel && weapon.equals(warrior.weapon);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + weapon.hashCode();
+        result = 31 * result + drunkLevel;
+        return result;
+    }
 }
 

@@ -27,5 +27,25 @@ public class Veil extends Item {
     public boolean isOpened() {
         return opened;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [открыт=" + opened + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        if (!(o instanceof Veil)) return false;
+        Veil veil = (Veil) o;
+        return opened == veil.opened;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (opened ? 1 : 0);
+        return result;
+    }
 }
 

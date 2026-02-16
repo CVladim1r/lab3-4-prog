@@ -42,5 +42,27 @@ public class Cauldron extends WorldObject {
     public List<Ingredient> getContents() {
         return contents;
     }
+
+    @Override
+    public String toString() {
+        return getName() + " [температура=" + temperature + ", ингредиентов=" + contents.size() + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cauldron)) return false;
+        if (!super.equals(o)) return false;
+        Cauldron cauldron = (Cauldron) o;
+        return temperature == cauldron.temperature && contents.equals(cauldron.contents);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + temperature;
+        result = 31 * result + contents.hashCode();
+        return result;
+    }
 }
 

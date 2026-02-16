@@ -38,5 +38,25 @@ public abstract class Character extends WorldObject {
     }
 
     public abstract void act(RitualContext ctx) throws RitualException;
+
+    @Override
+    public String toString() {
+        return super.toString() + " [эмоция=" + emotion + ", выносливость=" + stamina + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        Character character = (Character) o;
+        return stamina == character.stamina && emotion == character.emotion;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + emotion.hashCode();
+        result = 31 * result + stamina;
+        return result;
+    }
 }
 

@@ -59,5 +59,25 @@ public class PrinceTeen extends Character implements Executioner {
     public Weapon getKnife() {
         return knife;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [нож=" + knife.getName() + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        if (!(o instanceof PrinceTeen)) return false;
+        PrinceTeen that = (PrinceTeen) o;
+        return knife.equals(that.knife);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + knife.hashCode();
+        return result;
+    }
 }
 

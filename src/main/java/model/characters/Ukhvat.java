@@ -49,5 +49,26 @@ public class Ukhvat extends Character {
             changeEmotion(Emotion.FEAR);
         }
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [смелость=" + courage + ", чихов=" + sneezeCount + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        if (!(o instanceof Ukhvat)) return false;
+        Ukhvat ukhvat = (Ukhvat) o;
+        return courage == ukhvat.courage && sneezeCount == ukhvat.sneezeCount;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + courage;
+        result = 31 * result + sneezeCount;
+        return result;
+    }
 }
 

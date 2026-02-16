@@ -23,5 +23,10 @@ public class VoglePrince extends Character {
     public void act(RitualContext ctx) throws RitualException {
         System.out.println(getName() + " наблюдает за ритуалом.");
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [правитель]";
+    }
 }
 

@@ -57,5 +57,10 @@ public class Shaman extends Character implements Diviner {
     public void act(RitualContext ctx) throws RitualException {
         dance();
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [гадатель]";
+    }
 }
 

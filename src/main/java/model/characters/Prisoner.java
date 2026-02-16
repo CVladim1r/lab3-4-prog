@@ -59,5 +59,27 @@ public class Prisoner extends Character {
     public boolean isGagged() {
         return gagged;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [здоровье=" + health + ", связан=" + bound + ", заткнут=" + gagged + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        if (!(o instanceof Prisoner)) return false;
+        Prisoner prisoner = (Prisoner) o;
+        return bound == prisoner.bound && gagged == prisoner.gagged && health == prisoner.health;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (bound ? 1 : 0);
+        result = 31 * result + (gagged ? 1 : 0);
+        result = 31 * result + health;
+        return result;
+    }
 }
 

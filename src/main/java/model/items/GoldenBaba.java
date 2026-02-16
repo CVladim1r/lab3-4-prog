@@ -28,5 +28,25 @@ public class GoldenBaba extends Idol {
     public boolean isHidden() {
         return hidden;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [спрятана=" + hidden + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        if (!(o instanceof GoldenBaba)) return false;
+        GoldenBaba that = (GoldenBaba) o;
+        return hidden == that.hidden;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (hidden ? 1 : 0);
+        return result;
+    }
 }
 

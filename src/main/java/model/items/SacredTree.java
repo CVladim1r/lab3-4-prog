@@ -22,5 +22,26 @@ public class SacredTree extends WorldObject {
     public boolean isSunHit() {
         return sunHit;
     }
+
+    @Override
+    public String toString() {
+        return getName() + " [луч_солнца=" + sunHit + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SacredTree)) return false;
+        if (!super.equals(o)) return false;
+        SacredTree that = (SacredTree) o;
+        return sunHit == that.sunHit;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (sunHit ? 1 : 0);
+        return result;
+    }
 }
 

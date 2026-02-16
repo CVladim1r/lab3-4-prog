@@ -25,5 +25,25 @@ public class Idol extends Item {
     public int getIntegrity() {
         return integrity;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [целостность=" + integrity + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        if (!(o instanceof Idol)) return false;
+        Idol idol = (Idol) o;
+        return integrity == idol.integrity;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + integrity;
+        return result;
+    }
 }
 
