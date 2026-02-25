@@ -88,9 +88,8 @@ public class Main {
         System.out.println("Горят костры, рядом котёл. Золотая Баба закрыта пологом и спрятана в дупле.");
         System.out.println("Дым пока умеренный, но растёт.\n");
         
-        // ДЕЙСТВИЕ ПЕРВОЕ.. СТАРТ РИТУАЛА
         System.out.println("ДЕЙСТВИЕ ПЕРВОЕ. СТАРТ РИТУАЛА");
-        site.advancePhase(); // PREP -> CHANT
+        site.advancePhase();
         
         ukhvat.crossSelf();
         
@@ -117,7 +116,7 @@ public class Main {
         System.out.println();
         
         System.out.println("ДЕЙСТВИЕ ВТОРОЕ. РИТУАЛ ПРОДОЛЖАЕТСЯ");
-        site.advancePhase(); // CHANT -> OFFERING
+        site.advancePhase();
         
         for (Fire fire : site.getFires()) {
             fire.ignite();
@@ -216,7 +215,7 @@ public class Main {
         
         System.out.println();
         
-        // ДЕЙСТВИЕ ШЕСТОЕ. СКРЫТИЕ ЗОЛОТОЙ БАБЫ И ИДОЛ В КОСТРЕ
+        // СКРЫТИЕ ЗОЛОТОЙ БАБЫ И ИДОЛ В КОСТРЕ
         System.out.println("ДЕЙСТВИЕ ШЕСТОЕ. СКРЫТИЕ ЗОЛОТОЙ БАБЫ И ИДОЛ В КОСТРЕ");
         
         goldenBaba.hide();
@@ -297,7 +296,7 @@ public class Main {
         }
         
         System.out.println("\n-------------------------");
-        System.out.println("\nРИТУАЛ ЗАВЕРШЁН");
+        System.out.println("\n----- РИТУАЛ ЗАВЕРШЁН");
 
     }
 }

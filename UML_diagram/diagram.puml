@@ -1,7 +1,6 @@
 @startuml DiagramHearthOfParma
 skinparam classAttributeIconSize 0
 
-
 abstract class WorldObject {
   - id: java.util.UUID
   - name: String
@@ -48,6 +47,7 @@ class Ukhvat extends Character {
 
 class Shaman extends Character implements Diviner {
   + dance()
+  + dress(drs: DressType)
   + castSalt(fire: Fire, salt: Ingredient) throws RitualException
   + predict(ctx: RitualContext): Prophecy throws RitualException
   + act(ctx: RitualContext) throws RitualException
@@ -121,6 +121,12 @@ enum WeaponType {
   KNIFE
   ARROW
 }
+
+enum DressType {
+  OLENI
+  MEDVEDI
+}
+
 
 class Weapon extends Item {
   - type: WeaponType
@@ -210,10 +216,10 @@ class PanicException extends RuntimeException {
   + getMessage(): String
 }
 
-RitualSite -- "0..*" Character : participants
-RitualSite -- "0..*" Prisoner : prisoners
-RitualSite *-- "0..*" Fire
-RitualSite *-- "0..*" Cauldron
+RitualSite -- Character : participants
+RitualSite -- Prisoner : prisoners
+RitualSite *-- Fire
+RitualSite *-- Cauldron
 RitualSite *-- SacredTree
 RitualSite *-- Idol
 RitualSite *-- GoldenBaba
@@ -222,7 +228,7 @@ RitualSite *-- Veil
 Warrior --> Weapon : weapon
 PrinceTeen --> Weapon : knife
 
-Cauldron --> "0..*" Ingredient : contents
+Cauldron --> Ingredient : contents
 Cauldron ..> Drink : scoop()
 
 Diviner ..> Prophecy : predict()
